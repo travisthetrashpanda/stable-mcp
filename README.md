@@ -85,6 +85,10 @@ Ask your assistant things like:
 - Treat the key like a password: it grants access to your mail, which may contain sensitive documents and checks.
 - Anything your assistant reads (mail contents, senders) becomes part of your conversation with it.
 
+## Say thanks
+
+This project is free to use, no strings attached. If it's useful to you, a ⭐ on this repo or a shout-out to [@travisthetrashpanda](https://github.com/travisthetrashpanda) is always appreciated — and if you build something on top of it, a link back here helps other Stable users find it.
+
 ## License
 
 MIT
