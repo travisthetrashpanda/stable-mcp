@@ -83,6 +83,15 @@ def fetch_url_text(url, limit=60000):
         data = json.loads(text)
     except ValueError:
         return text[:limit]
+    # Textract-style payloads: LINE blocks give clean text without word-level dupes
+    blocks = data.get("Blocks") if isinstance(data, dict) else None
+    if isinstance(blocks, list):
+        lines = [
+            b.get("Text") for b in blocks
+            if isinstance(b, dict) and str(b.get("BlockType", "")).upper() == "LINE" and b.get("Text")
+        ]
+        if lines:
+            return "\n".join(lines)[:limit]
     # OCR payloads vary; harvest string values under text-ish keys.
     pieces = []
 
