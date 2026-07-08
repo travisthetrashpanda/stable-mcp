@@ -89,6 +89,8 @@ Ask your assistant things like:
 
 This project is free to use, no strings attached. If it's useful to you, a ⭐ on this repo or a shout-out to [@travisthetrashpanda](https://github.com/travisthetrashpanda) is always appreciated — and if you build something on top of it, a link back here helps other Stable users find it.
 
+Don't have Stable yet? [Sign up with my referral link](https://dashboard.usestable.com/onboard/begin?promoCode=travis-44ad84stref) — it's a zero-cost way to say thanks (full disclosure: it's a referral code, so I get credit if you join).
+
 ## License
 
 MIT
