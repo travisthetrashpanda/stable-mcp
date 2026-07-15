@@ -13,7 +13,29 @@ An [MCP](https://modelcontextprotocol.io) server for [Stable](https://www.usesta
 
 ## Setup
 
-### 1. Get the server
+### Easy mode 🪄
+
+If you use an AI assistant that can run commands (Claude Code, Cursor, and the like), paste this and you're done:
+
+> Install the Stable MCP server from https://github.com/travisthetrashpanda/stable-mcp — follow the "For AI assistants" section of its README. Ask me for my API key when you need it.
+
+Have your Stable API key handy ([grab it here](https://dashboard.usestable.com/settings/api-keys)) — your assistant will ask for it. Chat-only AI (with no access to your computer) can't install things for you; use manual mode below instead.
+
+### For AI assistants
+
+If you are an AI assistant installing this for a user, the whole server is one dependency-free Python file. Steps:
+
+1. Download `https://raw.githubusercontent.com/travisthetrashpanda/stable-mcp/main/server.py` to a stable location, e.g. `~/.claude/mcp-servers/stable/server.py`.
+2. Ask the user for their Stable API key (from https://dashboard.usestable.com/settings/api-keys). Write it to `api_key.txt` next to `server.py` with owner-only permissions (`chmod 600`) — or set `STABLE_API_KEY` in the MCP client's env config instead. Never commit or log the key.
+3. Register the server:
+   - Claude Code: `claude mcp add --scope user stable -- python3 <path-to-server.py>`
+   - Other stdio MCP clients: add `{"command": "python3", "args": ["<path-to-server.py>"]}` to the client's MCP config.
+4. Verify: call the `list_locations` tool (or send an `initialize` + `tools/list` handshake over stdio — the server speaks newline-delimited JSON-RPC). Expect 7 tools.
+5. Requirements: Python 3.9+ (preinstalled on macOS). No pip installs. Remind the user to restart their MCP client.
+
+### Manual mode
+
+#### 1. Get the server
 
 ```bash
 git clone https://github.com/travisthetrashpanda/stable-mcp.git
@@ -21,7 +43,7 @@ git clone https://github.com/travisthetrashpanda/stable-mcp.git
 
 Or just download `server.py` — it's the whole server.
 
-### 2. Add your API key
+#### 2. Add your API key
 
 Create an API key at [dashboard.usestable.com/settings/api-keys](https://dashboard.usestable.com/settings/api-keys), then save it next to the server:
 
@@ -33,7 +55,7 @@ chmod 600 api_key.txt
 
 (`api_key.txt` is gitignored so it can't be committed. Alternatively, set the `STABLE_API_KEY` environment variable in your MCP client config and skip the file.)
 
-### 3. Connect your client
+#### 3. Connect your client
 
 **Claude Code:**
 
